@@ -6,57 +6,52 @@ Sistema inteligente de monitoramento de ilhas de calor urbano em São Paulo, des
 
 ## Integrantes
 
-- Jacqueline Nanami Matushima
-- Pedro Zanon Castro Santana
-- Victor Araujo Ferreira da Silva
+- Jacqueline Nanami Matushima — RM568498
+- Pedro Zanon Castro Santana — RM567350
+- Victor Araujo Ferreira da Silva — RM567619
 
 ---
 
 ## Problema
 
-São Paulo é uma das metrópoles brasileiras mais afetadas pelas ilhas de calor urbano, pois a substituição da cobertura vegetal por superfícies impermeáveis eleva a temperatura de superfície (LST) em até 10°C acima das áreas vegetadas, impactando diretamente a saúde da população mais vulnerável. Segundo a SVMA (2017), 16 subprefeituras de São Paulo apresentam índice de área verde inferior a 5m²/hab, bem abaixo dos 12m²/hab recomendados pela OMS, portanto, o monitoramento inteligente das zonas de risco térmico torna-se essencial para subsidiar políticas públicas urbanas mais equitativas.
+Em São Paulo, os bairros densamente construídos registram temperaturas de superfície até 10°C acima das áreas vegetadas, e 16 subprefeituras têm menos de 5m²/hab de área verde abaixo do mínimo recomendado pela OMS. As regiões mais quentes coincidem com as populações mais vulneráveis, portanto o Thermis foi construído para mudar isso.
 
 ---
 
 ## Solução
 
-O THERMIS utiliza dados de satélite (NASA MODIS e Sentinel-2) combinados com Inteligência Artificial para monitorar, classificar e prever zonas de risco térmico em tempo real na cidade de São Paulo. A solução integra sensoriamento remoto, machine learning, visualização interativa e IoT em uma plataforma unificada de monitoramento urbano.
+O Thermis utiliza dados de satélite (NASA MODIS e Sentinel-2) combinados com Inteligência Artificial para monitorar, classificar e prever zonas de risco térmico em tempo real na cidade de São Paulo. A solução integra sensoriamento remoto, machine learning, visão computacional (NDVI), banco de dados SQLite, IoT e computação em nuvem em uma plataforma unificada de monitoramento urbano.
 
 ---
 
 ## Tecnologias Utilizadas
 
-| Camada | Tecnologia |
-|--------|------------|
-| Frontend | React.js, Leaflet, Recharts |
-| Backend | Python, FastAPI |
-| Machine Learning | Scikit-learn, Regressão Linear, Padrão Diurno LST |
-| Dados satelitais | NASA MODIS, Sentinel-2 |
-| IoT | ESP32 + Sensor DHT22 (simulado) |
-| Cloud | AWS Lambda + S3 (arquitetura simulada) |
-| Versionamento | Git, GitHub |
+| Camada | Tecnologia | Função |
+|--------|------------|--------|
+| Frontend | React.js, Leaflet, Recharts | Dashboard interativo estilo Mission Control |
+| Backend | Python, FastAPI | API REST com 10 rotas documentadas |
+| Machine Learning | Scikit-learn, Regressão Linear | Classificação de risco e predição de temperatura |
+| Visão Computacional | NDVI Sentinel-2 (B4/B8) | Análise de cobertura vegetal orbital |
+| Banco de Dados | SQLite + SQLAlchemy | Persistência de leituras, alertas e dados IoT |
+| Dados Satelitais | NASA MODIS, Sentinel-2 | LST e reflectância orbital |
+| IoT | ESP32 + Sensor DHT22 | Sensor local de temperatura e umidade (simulado) |
+| Cloud | AWS Lambda + S3 + SNS | Processamento serverless (arquitetura simulada) |
+| Versionamento | Git, GitHub | Controle de versão e repositório |
 
 ---
 
 ## Funcionalidades
 
-- Mapa interativo de temperatura de superfície (LST) por bairro de São Paulo
-- Classificação automática de zonas de risco: Crítica, Alerta, Moderada e Normal
-- Histórico de temperatura dos últimos 7 dias por bairro
-- Previsão de temperatura para as próximas 6 horas com modelo de IA
-- Índice de cobertura vegetal por zona com referência à norma OMS (mínimo 12m²/hab)
+- Mapa interativo de temperatura de superfície (LST) por bairro de São Paulo com manchas de calor coloridas
+- Classificação automática de zonas de risco em quatro níveis: Crítica (>=42°C), Alerta (38-42°C), Moderada (34-38°C) e Normal (<34°C)
+- Histórico de temperatura dos últimos 7 dias por bairro com gráfico de linha
+- Previsão de temperatura para as próximas 6 horas com modelo de IA e índice de confiança
+- Índice NDVI (Normalized Difference Vegetation Index) via Sentinel-2 por bairro
+- Índice de cobertura vegetal com referência à norma OMS (mínimo 12m²/hab)
 - Mapa de calor multidimensional: LST, Vegetação e Densidade Urbana
-- Leitura simulada de sensor ESP32 com temperatura, umidade e índice de calor
+- Banco de dados SQLite com persistência de leituras, alertas e dados do sensor
+- Leitura simulada de sensor ESP32 + DHT22 com temperatura, umidade e índice de calor em tempo real
 - Alertas automáticos para zonas em situação crítica
-
----
-
-## Base Científica
-
-- AMORIM, M.C.C.T. Ilhas de calor superficiais: frequência da intensidade e variabilidade espacial em cidade de clima tropical continental. **Geo UERJ**, Rio de Janeiro, n. 34, 2019.
-- FERREIRA, T.L.S. Vegetação, temperatura de superfície e morfologia urbana: um retrato da região metropolitana de São Paulo. **Revista Brasileira de Geografia Física**, 2019.
-- ROSA, M.R. Classificação do padrão de ocupação urbana de São Paulo utilizando aprendizagem de máquina e Sentinel-2. **Revista do Departamento de Geografia**, USP, 2018.
-- XIMENES, D.S.S. et al. A importância dos espaços públicos e áreas verdes pós-pandemia na cidade de São Paulo. **Revista LABVERDE**, FAUUSP, v. 10, n. 01, 2020.
 
 ---
 
@@ -74,7 +69,7 @@ O THERMIS utiliza dados de satélite (NASA MODIS e Sentinel-2) combinados com In
 cd backend
 python -m venv venv
 venv\Scripts\activate
-pip install fastapi uvicorn scikit-learn pandas numpy requests python-dotenv
+pip install fastapi uvicorn scikit-learn pandas numpy requests python-dotenv sqlalchemy matplotlib pillow rasterio scikit-image
 uvicorn main:app --reload
 ```
 
@@ -94,21 +89,24 @@ A aplicação estará disponível em: http://localhost:3000
 
 ---
 
-## Arquitetura da Solução
+## Pipeline de Dados
 
-```
-Fontes de dados satelitais (NASA MODIS / Sentinel-2)
-                    |
-         Backend Python + FastAPI
-         (processamento + modelo ML)
-                    |
+    Fontes de dados satelitais (NASA MODIS / Sentinel-2)
+                        |
+         AWS Lambda + EventBridge (processamento serverless)
+                        |
+             Backend Python + FastAPI
+          (classificação ML + cálculo NDVI)
+                        |
+         SQLite + SQLAlchemy (persistência de dados)
+                        |
+        API REST com 10 rotas (zones, alerts, sensor,
+             history, ndvi, db)
+                        |
       Dashboard React + Leaflet + Recharts
-         (visualização interativa)
-                    |
-         AWS Lambda + S3 (cloud)
-                    |
-      ESP32 + DHT22 (sensor IoT local)
-```
+             (visualização interativa)
+                        |
+          ESP32 + DHT22 (sensor IoT local)
 
 ---
 
@@ -123,6 +121,9 @@ Fontes de dados satelitais (NASA MODIS / Sentinel-2)
 | GET | /history/prediction/{zone} | Previsão de temperatura para as próximas 6 horas |
 | GET | /history/vegetation | Índice de cobertura vegetal por zona |
 | GET | /history/correlation | Dados de correlação para análise multidimensional |
+| GET | /ndvi/ | NDVI Sentinel-2 por bairro |
+| GET | /db/zones | Zonas persistidas no banco SQLite |
+| GET | /db/stats | Estatísticas gerais do banco de dados |
 
 ---
 
@@ -131,13 +132,19 @@ Fontes de dados satelitais (NASA MODIS / Sentinel-2)
 ```
 THERMIS/
 ├── backend/
-│   ├── main.py
-│   ├── ml_model.py
+│   ├── main.py               — Aplicação principal FastAPI + banco de dados
+│   ├── ml_model.py           — Modelo de classificação de risco térmico
+│   ├── ndvi_analysis.py      — Análise NDVI via Sentinel-2
+│   ├── database.py           — Modelos SQLite com SQLAlchemy
+│   ├── aws_lambda.py         — Arquitetura AWS Lambda simulada
 │   └── routers/
-│       ├── zones.py
-│       ├── alerts.py
-│       ├── sensor.py
-│       └── history.py
+│       ├── zones.py          — Rotas de zonas e classificação
+│       ├── alerts.py         — Rotas de alertas
+│       ├── sensor.py         — Rotas do sensor ESP32
+│       ├── history.py        — Histórico e predição
+│       └── ndvi.py           — Rotas NDVI Sentinel-2
+├── esp32/
+│   └── sensor_dht22.ino      — Código do sensor ESP32 + DHT22
 ├── frontend/
 │   └── thermis-dashboard/
 │       ├── public/
@@ -151,8 +158,14 @@ THERMIS/
 │           │   ├── HistoryChart.js
 │           │   ├── PredictionPanel.js
 │           │   ├── VegetationPanel.js
+│           │   ├── NDVIPanel.js
 │           │   └── CorrelationChart.js
 │           ├── App.js
 │           └── index.js
+├── .gitignore
 └── README.md
 ```
+
+---
+
+Global Solution 2026.1 — FIAP — Curso de Inteligência Artificial
