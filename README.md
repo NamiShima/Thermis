@@ -165,7 +165,3 @@ THERMIS/
 ├── .gitignore
 └── README.md
 ```
-
----
-
-Global Solution 2026.1 — FIAP — Curso de Inteligência Artificial
