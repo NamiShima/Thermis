@@ -1,0 +1,38 @@
+/* Reset global — remove margens e paddings padrão do navegador */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Faz o tamanho dos elementos incluir bordas e padding */
+}
+
+/* Estilo base da página — fundo escuro estilo Mission Control */
+body {
+  background-color: #0a0e1a; /* Azul escuro profundo */
+  color: #e0e6f0;             /* Texto claro para contraste */
+  font-family: 'Inter', 'Segoe UI', sans-serif; /* Fonte moderna e limpa */
+}
+
+/* Personalização da barra de scroll para combinar com o tema escuro */
+::-webkit-scrollbar {
+  width: 6px; /* Scroll fino e discreto */
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0e1a; /* Fundo do scroll igual ao fundo da página */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a3a5c;      /* Cor do indicador do scroll */
+  border-radius: 3px;        /* Bordas arredondadas no indicador */
+}
+/* Estiliza o popup do Leaflet para combinar com o tema escuro */
+.leaflet-popup-content-wrapper {
+  background: #111827 !important;
+  border: 1px solid #1e3a5f !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+
+.leaflet-popup-tip {
+  background: #111827 !important;
+}

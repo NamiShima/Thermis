@@ -1,0 +1,52 @@
+/* Container principal que ocupa toda a tela */
+.app-container {
+  min-height: 100vh;
+  background: #0a0e1a;   /* Fundo escuro Mission Control */
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;             /* Espaçamento entre os blocos */
+}
+
+/* Área principal com mapa e painéis laterais lado a lado */
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 340px; /* Mapa ocupa mais espaço, lateral fixa */
+  gap: 16px;
+  flex: 1;        /* Ocupa todo espaço vertical disponível */
+  min-height: 0;  /* Evita espaço vazio abaixo do mapa */
+}
+
+/* Painéis laterais empilhados verticalmente */
+.side-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Estilo base para todos os cards do dashboard */
+.card {
+  background: #111827;          /* Fundo levemente mais claro que o body */
+  border: 1px solid #1e3a5f;   /* Borda azul escura sutil */
+  border-radius: 8px;
+  padding: 16px;
+}
+
+/* Título padrão dos cards */
+.card-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #4a9eff;               /* Azul elétrico para títulos */
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #1e3a5f; /* Linha separadora sutil */
+}
+/* Grid dos 4 painéis analíticos na parte inferior */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 16px;
+  margin-top: 4px;
+}
