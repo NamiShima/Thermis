@@ -15,6 +15,7 @@ Sistema inteligente de monitoramento de ilhas de calor urbano em São Paulo, des
 ## Problema
 
 São Paulo é uma das metrópoles brasileiras mais afetadas pelas ilhas de calor urbano, pois a substituição da cobertura vegetal por superfícies impermeáveis eleva a temperatura de superfície (LST) em até 10°C acima das áreas vegetadas, impactando diretamente a saúde da população mais vulnerável. Segundo a SVMA (2017), 16 subprefeituras de São Paulo apresentam índice de área verde inferior a 5m²/hab, bem abaixo dos 12m²/hab recomendados pela OMS, portanto, o monitoramento inteligente das zonas de risco térmico torna-se essencial para subsidiar políticas públicas urbanas mais equitativas.
+
 ---
 
 ## Solução
@@ -69,11 +70,13 @@ O THERMIS utiliza dados de satélite (NASA MODIS e Sentinel-2) combinados com In
 
 ### Backend
 
-    cd backend
-    python -m venv venv
-    venv\Scripts\activate
-    pip install fastapi uvicorn scikit-learn pandas numpy requests python-dotenv
-    uvicorn main:app --reload
+```bash
+cd backend
+python -m venv venv
+venv\Scripts\activate
+pip install fastapi uvicorn scikit-learn pandas numpy requests python-dotenv
+uvicorn main:app --reload
+```
 
 A API estará disponível em: http://localhost:8000
 
@@ -81,9 +84,11 @@ A documentação interativa da API estará disponível em: http://localhost:8000
 
 ### Frontend
 
-    cd frontend/thermis-dashboard
-    npm install
-    npm start
+```bash
+cd frontend/thermis-dashboard
+npm install
+npm start
+```
 
 A aplicação estará disponível em: http://localhost:3000
 
@@ -91,17 +96,19 @@ A aplicação estará disponível em: http://localhost:3000
 
 ## Arquitetura da Solução
 
-    Fontes de dados satelitais (NASA MODIS / Sentinel-2)
-                        |
-             Backend Python + FastAPI
-             (processamento + modelo ML)
-                        |
-          Dashboard React + Leaflet + Recharts
-             (visualização interativa)
-                        |
-             AWS Lambda + S3 (cloud)
-                        |
-          ESP32 + DHT22 (sensor IoT local)
+```
+Fontes de dados satelitais (NASA MODIS / Sentinel-2)
+                    |
+         Backend Python + FastAPI
+         (processamento + modelo ML)
+                    |
+      Dashboard React + Leaflet + Recharts
+         (visualização interativa)
+                    |
+         AWS Lambda + S3 (cloud)
+                    |
+      ESP32 + DHT22 (sensor IoT local)
+```
 
 ---
 
@@ -121,31 +128,31 @@ A aplicação estará disponível em: http://localhost:3000
 
 ## Estrutura do Repositório
 
-    THERMIS/
-    ├── backend/
-    │   ├── main.py
-    │   ├── ml_model.py
-    │   └── routers/
-    │       ├── zones.py
-    │       ├── alerts.py
-    │       ├── sensor.py
-    │       └── history.py
-    ├── frontend/
-    │   └── thermis-dashboard/
-    │       ├── public/
-    │       └── src/
-    │           ├── components/
-    │           │   ├── Header.js
-    │           │   ├── MapPanel.js
-    │           │   ├── MetricsPanel.js
-    │           │   ├── AlertsPanel.js
-    │           │   ├── SensorPanel.js
-    │           │   ├── HistoryChart.js
-    │           │   ├── PredictionPanel.js
-    │           │   ├── VegetationPanel.js
-    │           │   └── CorrelationChart.js
-    │           ├── App.js
-    │           └── index.js
-    └── README.md
-
----
+```
+THERMIS/
+├── backend/
+│   ├── main.py
+│   ├── ml_model.py
+│   └── routers/
+│       ├── zones.py
+│       ├── alerts.py
+│       ├── sensor.py
+│       └── history.py
+├── frontend/
+│   └── thermis-dashboard/
+│       ├── public/
+│       └── src/
+│           ├── components/
+│           │   ├── Header.js
+│           │   ├── MapPanel.js
+│           │   ├── MetricsPanel.js
+│           │   ├── AlertsPanel.js
+│           │   ├── SensorPanel.js
+│           │   ├── HistoryChart.js
+│           │   ├── PredictionPanel.js
+│           │   ├── VegetationPanel.js
+│           │   └── CorrelationChart.js
+│           ├── App.js
+│           └── index.js
+└── README.md
+```
