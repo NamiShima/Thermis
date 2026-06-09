@@ -13,3 +13,9 @@ build/
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Banco de dados local
+*.db
+
+# Pasta Thermis duplicada
+Thermis/
