@@ -37,3 +37,4 @@ def classify(lst: float) -> dict:
             "color": "#0f3460",  # Azul escuro
             "level": 1           # Nível mais baixo de risco
         }
+    
