@@ -8,7 +8,7 @@ import SensorPanel from './components/SensorPanel';
 import HistoryChart from './components/HistoryChart';
 import PredictionPanel from './components/PredictionPanel';
 import VegetationPanel from './components/VegetationPanel';
-import CorrelationChart from './components/CorrelationChart';
+import NDVIPanel from './components/NDVIPanel';
 
 function App() {
   const [zones, setZones] = useState([]);
@@ -47,20 +47,20 @@ function App() {
         height: '100vh', background: '#0a0e1a', color: '#4a9eff',
         fontSize: '18px', letterSpacing: '0.1em'
       }}>
-        ⟳ THERMIS — Inicializando sistema...
+        THERMIS — Inicializando sistema...
       </div>
     );
   }
 
   return (
     <div className="app-container">
-      {/* Cabeçalho */}
+      {/* Cabecalho */}
       <Header />
 
-      {/* Métricas no topo */}
+      {/* Metricas no topo */}
       <MetricsPanel zones={zones} />
 
-      {/* Área principal: mapa + painéis laterais */}
+      {/* Area principal: mapa + paineis laterais */}
       <div className="main-content">
         <MapPanel zones={zones} selectedZone={selectedZone} onZoneSelect={setSelectedZone} />
 
@@ -71,12 +71,12 @@ function App() {
         </div>
       </div>
 
-      {/* Segunda linha: gráficos analíticos */}
+      {/* Segunda linha: graficos analiticos */}
       <div className="analytics-grid">
         <HistoryChart />
         <PredictionPanel />
         <VegetationPanel />
-        <CorrelationChart />
+        <NDVIPanel />
       </div>
     </div>
   );

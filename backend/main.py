@@ -1,6 +1,6 @@
 ﻿from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import zones, alerts, sensor, history
+from routers import zones, alerts, sensor, history, ndvi
 from database import Base, engine, SessionLocal, ZoneReading, Alert, SensorReading
 
 Base.metadata.create_all(bind=engine)
@@ -10,6 +10,7 @@ app.include_router(zones.router, prefix='/zones', tags=['Zones'])
 app.include_router(alerts.router, prefix='/alerts', tags=['Alerts'])
 app.include_router(sensor.router, prefix='/sensor', tags=['Sensor'])
 app.include_router(history.router, prefix='/history', tags=['History'])
+app.include_router(ndvi.router, prefix='/ndvi', tags=['NDVI'])
 
 @app.get('/')
 def root():
@@ -53,3 +54,4 @@ def get_db_stats():
     result = {'total_zone_readings': db.query(ZoneReading).count(), 'total_alerts': db.query(Alert).count(), 'total_sensor_readings': db.query(SensorReading).count(), 'critical_zones': db.query(ZoneReading).filter(ZoneReading.level == 4).count(), 'database': 'SQLite', 'status': 'online'}
     db.close()
     return result
+
