@@ -1,6 +1,8 @@
 # THERMIS
 ### 🛰️ Monitoramento Inteligente de Ilhas de Calor Urbano
 
+---
+
 ## Integrantes
 
 - Jacqueline Nanami Matushima — RM568498
