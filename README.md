@@ -1,5 +1,5 @@
 # THERMIS
-### 🛰️ Monitoramento Inteligente de Ilhas de Calor Urbano · São Paulo
+### 🛰️ Monitoramento Inteligente de Ilhas de Calor Urbano
 
 ## Integrantes
 
