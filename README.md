@@ -1,9 +1,3 @@
-# FIAP - Faculdade de Informática e Administração Paulista
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/NamiShima/Thermis/main/assets/logo-fiap.png" width="40%">
-</p>
-
 # THERMIS
 
 ## 👨‍🎓 Integrantes
