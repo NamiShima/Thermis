@@ -190,7 +190,7 @@ Fontes de dados satelitais (NASA MODIS / Sentinel-2)
 ## 📎 Links e Observações
 
 - **Repositório GitHub:** https://github.com/NamiShima/Thermis
-- **Vídeo demonstrativo:** [INSERIR LINK DO YOUTUBE APÓS GRAVAÇÃO]
+- **Vídeo demonstrativo:** [https://youtu.be/lqyIvchERiM?si=jOEC-WVjLJXyKqKQ]
 - **Observação:** Este projeto concorre ao pódio da Global Solution — FIAP
 
 ---
