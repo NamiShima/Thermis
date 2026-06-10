@@ -1,12 +1,13 @@
 # THERMIS
+### 🛰️ Monitoramento Inteligente de Ilhas de Calor Urbano · São Paulo
 
-## 👨‍🎓 Integrantes
+## Integrantes
 
 - Jacqueline Nanami Matushima — RM568498
 - Pedro Zanon Castro Santana — RM567350
 - Victor Araujo Ferreira da Silva — RM567619
 
-## 👩‍🏫 Professores
+## Professores
 
 ### Tutor(a)
 - Sabrina Otoni
